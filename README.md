@@ -230,7 +230,7 @@ flutter test test/models/task_test.dart
 ## Submission Details
 
 - **Repository**: https://github.com/masteribro/Task-Manager.git
-- **APK Build**:
+- **APK Build**: https://drive.google.com/file/d/1tro_DbNJHbSz9Tl15jdLl0oQL_8mAAIK/view?usp=sharing
 - **Architecture**: Clean Architecture with Riverpod State Management
 - **Database**: Hive for local persistence
 
