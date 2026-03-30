@@ -5,7 +5,6 @@ import '../../data/datasources/task_local_datasource.dart';
 import '../../data/repositories/task_repository_impl.dart';
 import '../../data/models/task_model.dart';
 
-/// Provides the local data source (e.g., Hive or local DB)
 final taskLocalDataSourceProvider = Provider<TaskDataSource>((ref) {
   return TaskLocalDataSource();
 });
@@ -67,8 +66,9 @@ class TaskNotifier extends StateNotifier<List<TaskModel>> {
   /// Tracks whether repository initialization is complete.
   bool initialized = false;
 
+// Kick off async initialization immediately
   TaskNotifier(this.ref) : super([]) {
-    initialize(); // Kick off async initialization immediately
+    initialize();
   }
 
   /// Initializes the repository and loads tasks.
@@ -77,7 +77,7 @@ class TaskNotifier extends StateNotifier<List<TaskModel>> {
     try {
       repository = await ref.watch(taskRepositoryProvider.future);
       initialized = true;
-      loadTasks(); // Populate initial state after setup
+      loadTasks();
     } catch (e) {
       print('${AppStrings.errorInitializingNotifier}$e');
     }
@@ -95,7 +95,7 @@ class TaskNotifier extends StateNotifier<List<TaskModel>> {
   Future<void> addTask(TaskModel task) async {
     if (!initialized) await initialize();
     await repository.addTask(task);
-    loadTasks(); // Refresh state after mutation
+    loadTasks();
   }
 
   /// Updates an existing task and refreshes state.
